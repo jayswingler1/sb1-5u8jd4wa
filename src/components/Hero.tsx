@@ -78,18 +78,18 @@ const Hero: React.FC = () => {
           <div className="relative bg-gradient-to-r from-[#fa98d4]/20 to-[#ff6b9d]/20 backdrop-blur-md rounded-3xl p-8 border-4 border-[#fa98d4]/30 shadow-2xl max-w-4xl mx-auto overflow-hidden">
             <div className="relative">
               <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
-                Trying to master set? 
-                <span className="text-transparent bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] bg-clip-text"> Click to grab your missing cards!</span>
+                Looking for premium products? 
+                <span className="text-transparent bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] bg-clip-text"> Check out our exclusive collection!</span>
               </h3>
               <p className="text-white/90 text-lg mb-6 font-medium">
-                Browse our complete inventory organized by set. Find exactly what you need to complete your collection.
+                Discover our curated selection of premium products and services designed just for you.
               </p>
               <button 
-                onClick={() => handleNavigation('#shop')}
+                onClick={() => handleNavigation('#products')}
                 className="group bg-[#fa98d4] hover:bg-[#ff6b9d] text-white font-black py-4 px-8 rounded-2xl text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-4 border-black relative overflow-hidden inline-block"
               >
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                <span className="relative">🎯 Browse by Set</span>
+                <span className="relative">🛍️ View Products</span>
               </button>
             </div>
           </div>
