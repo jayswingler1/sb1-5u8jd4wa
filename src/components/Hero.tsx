@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Subtitle with enhanced styling */}
-        <div className="relative mb-8">
+        <div className="relative mb-8 mt-8">
           <p className="text-2xl md:text-3xl text-white/90 max-w-4xl mx-auto font-medium leading-relaxed">
             Watch me pull cards live on YouTube, then buy them directly from me. 
             Every card comes with <span className="text-white font-bold">guaranteed authenticity</span> and condition transparency.
