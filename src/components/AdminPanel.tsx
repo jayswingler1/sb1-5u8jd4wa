@@ -240,7 +240,6 @@ const AdminPanel: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-
     if (!supabase) {
       alert('Supabase is not configured. Cannot delete card.');
       return;
@@ -248,6 +247,8 @@ const AdminPanel: React.FC = () => {
     
     setLoading(true);
     try {
+      console.log('Attempting to delete card with ID:', id);
+      
       const { error } = await supabase
         .from('cards')
         .delete()
@@ -255,17 +256,19 @@ const AdminPanel: React.FC = () => {
 
       if (error) throw error;
       
+      console.log('Card deleted successfully');
+      
       // Show success message
       alert('Card deleted successfully!');
       
       // Refresh the cards list
-      fetchCards();
+      await fetchCards();
       
       // Also refresh orders in case any were affected
-      fetchOrders();
+      await fetchOrders();
     } catch (error) {
       console.error('Error deleting card:', error);
-      alert('Error deleting card. Please try again.');
+      alert(`Error deleting card: ${error.message || 'Please try again.'}`);
     } finally {
       setLoading(false);
     }
