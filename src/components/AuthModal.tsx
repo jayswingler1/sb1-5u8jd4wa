@@ -74,6 +74,20 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
 
         if (data.user) {
           setMessage({ type: 'success', text: 'Account created successfully! You are now logged in.' });
+          
+          // Check if this is the first user and make them admin
+          const { data: profilesCount } = await supabase
+            .from('profiles')
+            .select('id', { count: 'exact' });
+          
+          if (profilesCount && profilesCount.length === 0) {
+            // This is the first user, make them admin
+            await supabase
+              .from('profiles')
+              .update({ role: 'admin' })
+              .eq('id', data.user.id);
+          }
+          
           setTimeout(() => {
             handleClose();
             window.location.reload();

@@ -15,6 +15,7 @@ import ShopPage from './components/ShopPage';
 import AboutPage from './components/AboutPage';
 import SuccessPage from './components/SuccessPage';
 import ProductManagement from './components/ProductManagement';
+import AdminSetup from './components/AdminSetup';
 import PageTransition from './components/PageTransition';
 import { usePageTransition } from './hooks/usePageTransition';
 
@@ -39,6 +40,9 @@ function App() {
   // Check for admin page
   const isAdmin = window.location.hash === '#admin' || currentPage === 'admin';
 
+  // Check for admin setup page
+  const isAdminSetup = window.location.hash === '#admin-setup' || currentPage === 'admin-setup';
+
   // Listen for hash changes
   React.useEffect(() => {
     const handleHashChange = () => {
@@ -52,6 +56,8 @@ function App() {
         setCurrentPage('success');
       } else if (window.location.hash === '#admin') {
         setCurrentPage('admin');
+      } else if (window.location.hash === '#admin-setup') {
+        setCurrentPage('admin-setup');
       } else {
         setCurrentPage('home');
       }
@@ -113,6 +119,20 @@ function App() {
             window.location.hash = '';
             setShowAbout(false);
           }} />
+          <Cart />
+        </CartProvider>
+      </AuthProvider>
+    );
+  }
+
+  // Handle admin setup page
+  if (isAdminSetup) {
+    return (
+      <AuthProvider>
+        <CartProvider>
+          <div className="min-h-screen bg-gradient-to-br from-[#3a4bcc] via-[#2a3ba0] to-[#1a2b80] flex items-center justify-center px-4">
+            <AdminSetup />
+          </div>
           <Cart />
         </CartProvider>
       </AuthProvider>
