@@ -4,11 +4,20 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
+// Validate environment variables
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Missing Supabase environment variables');
+  console.error('VITE_SUPABASE_URL:', supabaseUrl);
+  console.error('VITE_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'Present' : 'Missing');
+}
+
 // Create Supabase client
-export const supabase = createClient(
-  supabaseUrl || 'https://mnmpxutdcopzrtpowkzh.supabase.co',
-  supabaseAnonKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ubXB4dXRkY29wenJ0cG93a3poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM0NjE4ODcsImV4cCI6MjA2OTAzNzg4N30.-bzqqvmhvHmL5itrZwFvAxgY2JRSrS8FuZX04uOsJDA'
-);
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : createClient(
+      'https://mnmpxutdcopzrtpowkzh.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ubXB4dXRkY29wenJ0cG93a3poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM0NjE4ODcsImV4cCI6MjA2OTAzNzg4N30.-bzqqvmhvHmL5itrZwFvAxgY2JRSrS8FuZX04uOsJDA'
+    );
 
 // Types
 export interface Card {
