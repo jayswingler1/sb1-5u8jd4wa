@@ -6,9 +6,9 @@ export const usePageTransition = () => {
   const startTransition = useCallback((callback?: () => void) => {
     setIsTransitioning(true);
     
-    // Execute the callback after a short delay to ensure transition starts
+    // Execute the callback during the fade-in
     if (callback) {
-      setTimeout(callback, 100);
+      setTimeout(callback, 200);
     }
   }, []);
 
