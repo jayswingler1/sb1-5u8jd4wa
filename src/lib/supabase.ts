@@ -82,3 +82,40 @@ export interface OrderItem {
   total_price: number;
   created_at: string;
 }
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  first_name?: string;
+  last_name?: string;
+  role: 'admin' | 'customer';
+  created_at: string;
+  updated_at: string;
+}
+
+// Helper function to get user profile
+export const getUserProfile = async (userId: string): Promise<UserProfile | null> => {
+  try {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .single();
+
+    if (error) {
+      console.error('Error fetching user profile:', error);
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error in getUserProfile:', error);
+    return null;
+  }
+};
+
+// Helper function to check if user is admin
+export const isUserAdmin = async (userId: string): Promise<boolean> => {
+  const profile = await getUserProfile(userId);
+  return profile?.role === 'admin';
+};

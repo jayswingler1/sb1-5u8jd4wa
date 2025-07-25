@@ -1,29 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, User, Menu, LogOut } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
-import { supabase } from '../lib/supabase';
-import { User as SupabaseUser } from '@supabase/supabase-js';
+import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './AuthModal';
 
 const Header: React.FC = () => {
   const { toggleCart, getCartCount } = useCart();
-  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const { user, isAdmin, signOut } = useAuth();
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
-
-  useEffect(() => {
-    // Get initial user
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user);
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
 
   const handleNavigation = (hash: string) => {
     window.location.hash = hash;
@@ -31,7 +16,7 @@ const Header: React.FC = () => {
   };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    await signOut();
     window.location.reload();
   };
 
@@ -80,6 +65,14 @@ const Header: React.FC = () => {
                 >
                   About
                 </button>
+                {isAdmin && (
+                  <button 
+                    onClick={() => handleNavigation('#admin')}
+                    className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20"
+                  >
+                    Admin
+                  </button>
+                )}
               </div>
             </nav>
 
