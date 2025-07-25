@@ -240,7 +240,6 @@ const AdminPanel: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this card?')) return;
 
     if (!supabase) {
       alert('Supabase is not configured. Cannot delete card.');
