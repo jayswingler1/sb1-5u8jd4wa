@@ -1,9 +1,18 @@
 import React from 'react';
 import { ShoppingCart, Search, User, Menu } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { usePageTransition } from '../hooks/usePageTransition';
 
 const Header: React.FC = () => {
   const { toggleCart, getCartCount } = useCart();
+  const { startTransition } = usePageTransition();
+
+  const handleNavigation = (hash: string) => {
+    startTransition(() => {
+      window.location.hash = hash;
+      window.location.reload();
+    });
+  };
 
   return (
     <header className="relative z-10 bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] backdrop-blur-md border-b-4 border-black shadow-lg">
@@ -27,10 +36,7 @@ const Header: React.FC = () => {
                 Latest Pulls
               </a>
               <button 
-                onClick={() => {
-                  window.location.hash = '#shop';
-                  window.location.reload();
-                }}
+                onClick={() => handleNavigation('#shop')}
                 className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20"
               >
                 All Cards
@@ -39,10 +45,7 @@ const Header: React.FC = () => {
                 YouTube
               </a>
               <button 
-                onClick={() => {
-                  window.location.hash = '#about';
-                  window.location.reload();
-                }}
+                onClick={() => handleNavigation('#about')}
                 className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20"
               >
                 About

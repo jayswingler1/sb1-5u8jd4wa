@@ -13,12 +13,15 @@ import ShopPage from './components/ShopPage';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import AboutPage from './components/AboutPage';
+import PageTransition from './components/PageTransition';
+import { usePageTransition } from './hooks/usePageTransition';
 
 function App() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [showShop, setShowShop] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
+  const { isTransitioning, startTransition, completeTransition } = usePageTransition();
 
   // Check for admin access
   const isAdmin = window.location.hash === '#admin' || showAdmin;
@@ -35,33 +38,37 @@ function App() {
   // Listen for hash changes
   React.useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#checkout') {
-        setCurrentPage('checkout');
-      } else if (window.location.hash === '#shop') {
-        setCurrentPage('shop');
-      } else if (window.location.hash === '#about') {
-        setCurrentPage('about');
-      } else if (window.location.hash === '#admin') {
-        setCurrentPage('admin');
-      } else {
-        setCurrentPage('home');
-      }
+      startTransition(() => {
+        if (window.location.hash === '#checkout') {
+          setCurrentPage('checkout');
+        } else if (window.location.hash === '#shop') {
+          setCurrentPage('shop');
+        } else if (window.location.hash === '#about') {
+          setCurrentPage('about');
+        } else if (window.location.hash === '#admin') {
+          setCurrentPage('admin');
+        } else {
+          setCurrentPage('home');
+        }
+      });
     };
 
     window.addEventListener('hashchange', handleHashChange);
     handleHashChange(); // Check initial hash
 
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [startTransition]);
 
   const toggleAdmin = () => {
-    if (isAdmin) {
-      window.location.hash = '';
-      setShowAdmin(false);
-    } else {
-      window.location.hash = '#admin';
-      setShowAdmin(true);
-    }
+    startTransition(() => {
+      if (isAdmin) {
+        window.location.hash = '';
+        setShowAdmin(false);
+      } else {
+        window.location.hash = '#admin';
+        setShowAdmin(true);
+      }
+    });
   };
 
   // Handle checkout page
@@ -118,6 +125,11 @@ function App() {
   return (
     <CartProvider>
       <div className="min-h-screen bg-gradient-to-br from-[#3a4bcc] via-[#2a3ba0] to-[#1a2b80] relative overflow-x-hidden">
+        <PageTransition 
+          isTransitioning={isTransitioning} 
+          onTransitionComplete={completeTransition}
+        />
+        
         {/* Admin Toggle Button */}
         <button
           onClick={toggleAdmin}

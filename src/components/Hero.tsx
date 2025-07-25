@@ -1,7 +1,17 @@
 import React from 'react';
 import { Play, Star, Shield, Clock, Zap, Trophy, Sparkles } from 'lucide-react';
+import { usePageTransition } from '../hooks/usePageTransition';
 
 const Hero: React.FC = () => {
+  const { startTransition } = usePageTransition();
+
+  const handleNavigation = (hash: string) => {
+    startTransition(() => {
+      window.location.hash = hash;
+      window.location.reload();
+    });
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-16">
       {/* Live Badge - Top Left */}
@@ -42,10 +52,7 @@ const Hero: React.FC = () => {
             {/* Button glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
             <div 
-              onClick={() => {
-                window.location.hash = '#shop';
-                window.location.reload();
-              }}
+              onClick={() => handleNavigation('#shop')}
               className="relative flex items-center gap-3 cursor-pointer"
             >
               <div className="bg-white/20 rounded-full p-2">
@@ -59,10 +66,7 @@ const Hero: React.FC = () => {
             {/* Button glow effect */}
             <div className="absolute inset-0 bg-[#fa98d4] opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300"></div>
             <div 
-              onClick={() => {
-                window.location.hash = '#shop';
-                window.location.reload();
-              }}
+              onClick={() => handleNavigation('#shop')}
               className="relative flex items-center gap-3 cursor-pointer"
             >
               <div className="bg-white/20 rounded-full p-2">
@@ -85,10 +89,7 @@ const Hero: React.FC = () => {
                 Browse our complete inventory organized by set. Find exactly what you need to complete your collection.
               </p>
               <button 
-                onClick={() => {
-                  window.location.hash = '#shop';
-                  window.location.reload();
-                }}
+                onClick={() => handleNavigation('#shop')}
                 className="group bg-[#fa98d4] hover:bg-[#ff6b9d] text-white font-black py-4 px-8 rounded-2xl text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-4 border-black relative overflow-hidden inline-block"
               >
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>

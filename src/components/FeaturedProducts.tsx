@@ -2,6 +2,7 @@ import React from 'react';
 import { useCards } from '../hooks/useCards';
 import { Card } from '../lib/supabase';
 import { useCart } from '../contexts/CartContext';
+import { usePageTransition } from '../hooks/usePageTransition';
 import { ShoppingCart, Heart, Star, Play } from 'lucide-react';
 
 interface ProductCardProps extends Card {
@@ -141,6 +142,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
 const FeaturedProducts: React.FC = () => {
   const { cards, loading, error } = useCards(true); // Get featured cards only
+  const { startTransition } = usePageTransition();
+
+  const handleViewAllCards = () => {
+    startTransition(() => {
+      window.location.hash = '#shop';
+      window.location.reload();
+    });
+  };
 
   if (loading) {
     return (
@@ -189,10 +198,7 @@ const FeaturedProducts: React.FC = () => {
 
         <div className="text-center">
           <button 
-            onClick={() => {
-              window.location.hash = '#shop';
-              window.location.reload();
-            }}
+            onClick={handleViewAllCards}
             className="inline-block bg-[#fa98d4] hover:bg-[#ff6b9d] text-white font-black py-5 px-10 rounded-3xl text-xl transition-all shadow-xl hover:shadow-2xl hover:scale-105 hover:-translate-y-1"
           >
             View All Cards
