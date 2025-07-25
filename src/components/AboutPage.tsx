@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowLeft, Youtube, Play, Star, Trophy, Heart, Zap, Shield, Clock } from 'lucide-react';
-import { usePageTransition } from '../hooks/usePageTransition';
 import StarField from './StarField';
 
 interface AboutPageProps {
@@ -8,20 +7,15 @@ interface AboutPageProps {
 }
 
 const AboutPage: React.FC<AboutPageProps> = ({ onClose }) => {
-  const { startTransition } = usePageTransition();
 
   const handleNavigation = (hash: string) => {
-    startTransition(() => {
-      window.location.hash = hash;
-      window.location.reload();
-    });
+    window.location.hash = hash;
+    window.location.reload();
   };
 
   const handleClose = () => {
-    startTransition(() => {
-      window.location.hash = '';
-      window.location.reload();
-    });
+    window.location.hash = '';
+    window.location.reload();
   };
 
   return (

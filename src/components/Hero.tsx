@@ -1,15 +1,11 @@
 import React from 'react';
 import { Play, Star, Shield, Clock, Zap, Trophy, Sparkles } from 'lucide-react';
-import { usePageTransition } from '../hooks/usePageTransition';
 
 const Hero: React.FC = () => {
-  const { startTransition } = usePageTransition();
 
   const handleNavigation = (hash: string) => {
-    startTransition(() => {
-      window.location.hash = hash;
-      window.location.reload();
-    });
+    window.location.hash = hash;
+    window.location.reload();
   };
 
   return (

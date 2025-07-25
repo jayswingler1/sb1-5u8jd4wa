@@ -1,17 +1,13 @@
 import React from 'react';
 import { ShoppingCart, Search, User, Menu } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
-import { usePageTransition } from '../hooks/usePageTransition';
 
 const Header: React.FC = () => {
   const { toggleCart, getCartCount } = useCart();
-  const { startTransition } = usePageTransition();
 
   const handleNavigation = (hash: string) => {
-    startTransition(() => {
-      window.location.hash = hash;
-      window.location.reload();
-    });
+    window.location.hash = hash;
+    window.location.reload();
   };
 
   return (

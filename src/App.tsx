@@ -38,37 +38,33 @@ function App() {
   // Listen for hash changes
   React.useEffect(() => {
     const handleHashChange = () => {
-      startTransition(() => {
-        if (window.location.hash === '#checkout') {
-          setCurrentPage('checkout');
-        } else if (window.location.hash === '#shop') {
-          setCurrentPage('shop');
-        } else if (window.location.hash === '#about') {
-          setCurrentPage('about');
-        } else if (window.location.hash === '#admin') {
-          setCurrentPage('admin');
-        } else {
-          setCurrentPage('home');
-        }
-      });
+      if (window.location.hash === '#checkout') {
+        setCurrentPage('checkout');
+      } else if (window.location.hash === '#shop') {
+        setCurrentPage('shop');
+      } else if (window.location.hash === '#about') {
+        setCurrentPage('about');
+      } else if (window.location.hash === '#admin') {
+        setCurrentPage('admin');
+      } else {
+        setCurrentPage('home');
+      }
     };
 
     window.addEventListener('hashchange', handleHashChange);
     handleHashChange(); // Check initial hash
 
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [startTransition]);
+  }, []);
 
   const toggleAdmin = () => {
-    startTransition(() => {
-      if (isAdmin) {
-        window.location.hash = '';
-        setShowAdmin(false);
-      } else {
-        window.location.hash = '#admin';
-        setShowAdmin(true);
-      }
-    });
+    if (isAdmin) {
+      window.location.hash = '';
+      setShowAdmin(false);
+    } else {
+      window.location.hash = '#admin';
+      setShowAdmin(true);
+    }
   };
 
   // Handle checkout page

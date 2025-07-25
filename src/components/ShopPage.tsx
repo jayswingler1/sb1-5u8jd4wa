@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Search, Filter, Grid, List, Star, ShoppingCart, Heart, Play, Package, User, Menu } from 'lucide-react';
 import { useCards } from '../hooks/useCards';
 import { useCart } from '../contexts/CartContext';
-import { usePageTransition } from '../hooks/usePageTransition';
 import { Card } from '../lib/supabase';
 import StarField from './StarField';
 
@@ -13,7 +12,6 @@ interface ShopPageProps {
 const ShopPage: React.FC<ShopPageProps> = ({ onClose }) => {
   const { cards, loading, error } = useCards(false); // Get all cards
   const { addItem, toggleCart, getCartCount } = useCart();
-  const { startTransition } = usePageTransition();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSet, setSelectedSet] = useState('all');
   const [selectedRarity, setSelectedRarity] = useState('all');
@@ -57,10 +55,8 @@ const ShopPage: React.FC<ShopPageProps> = ({ onClose }) => {
   };
 
   const handleNavigation = (hash: string) => {
-    startTransition(() => {
-      window.location.hash = hash;
-      window.location.reload();
-    });
+    window.location.hash = hash;
+    window.location.reload();
   };
 
   const ProductCard: React.FC<{ card: Card }> = ({ card }) => {
