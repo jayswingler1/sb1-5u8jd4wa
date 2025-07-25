@@ -12,10 +12,9 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 // Create Supabase client
-export const supabase = createClient(
-  'https://mnmpxutdcopzrtpowkzh.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ubXB4dXRkY29wenJ0cG93a3poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM0NjE4ODcsImV4cCI6MjA2OTAzNzg4N30.-bzqqvmhvHmL5itrZwFvAxgY2JRSrS8FuZX04uOsJDA'
-);
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 // Types
 export interface Card {
