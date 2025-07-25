@@ -339,7 +339,7 @@ const ShopPage: React.FC<ShopPageProps> = ({ onClose }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-12">
             <div className="flex items-center gap-4">
-              <h1 className="text-xl font-black text-white">Card Shop</h1>
+              <h1 className="text-xl font-black text-white">Welcome To The Card Shop</h1>
               <span className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white font-bold text-sm">
                 {filteredCards.length} cards
               </span>
