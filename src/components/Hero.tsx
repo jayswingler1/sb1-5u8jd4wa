@@ -36,13 +36,13 @@ const Hero: React.FC = () => {
 
         {/* Enhanced CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-          <button className="group relative bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] hover:from-[#ff6b9d] hover:to-[#fa98d4] text-white font-black py-6 px-12 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 border-4 border-white/20 overflow-hidden">
+          <button className="group relative bg-white hover:bg-gray-50 text-black font-black py-6 px-12 rounded-2xl text-xl transition-all duration-300 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 overflow-hidden">
             {/* Button glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-[#fa98d4] opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300"></div>
             Watch Latest Pull
           </button>
           
-          <button className="group relative bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-black py-6 px-12 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-3xl border-4 border-white/30 hover:border-[#fa98d4] overflow-hidden">
+          <button className="group relative bg-white hover:bg-gray-50 text-black font-black py-6 px-12 rounded-2xl text-xl transition-all duration-300 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 overflow-hidden">
             {/* Button glow effect */}
             <div className="absolute inset-0 bg-[#fa98d4] opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300"></div>
             <div className="relative flex items-center gap-3">
