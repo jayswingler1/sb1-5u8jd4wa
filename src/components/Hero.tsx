@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-4">
       {/* Hero Content */}
-      <div className="relative z-10 text-center max-w-6xl mx-auto -mt-16">
+      <div className="relative z-10 text-center max-w-6xl mx-auto -mt-24">
         {/* Main Headline with enhanced styling */}
         <div className="relative mb-4">
           {/* Main text */}
