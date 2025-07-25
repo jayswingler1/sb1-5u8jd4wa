@@ -164,22 +164,25 @@ const AdminPanel: React.FC = () => {
     }
 
     try {
-      setLoading(true);
-      setError(null);
-
       const { error } = await supabase
         .from('cards')
         .delete()
         .eq('id', id);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Delete error:', error);
+        setError(`Failed to delete card: ${error.message}`);
+        return;
+      }
 
-      await fetchCards();
+      // Remove the card from local state immediately
+      setCards(prevCards => prevCards.filter(card => card.id !== id));
+      
+      // Also refresh from database to ensure sync
+      fetchCards();
     } catch (err) {
       console.error('Error deleting card:', err);
-      setError(`Failed to delete card: ${err instanceof Error ? err.message : 'Unknown error'}`);
-    } finally {
-      setLoading(false);
+      setError('Failed to delete card. Please try again.');
     }
   };
 
