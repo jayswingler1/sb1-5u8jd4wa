@@ -8,6 +8,22 @@ export const useCards = (featured = false) => {
 
   useEffect(() => {
     fetchCards();
+    
+    // Set up real-time subscription to listen for changes
+    const subscription = supabase
+      .channel('cards_changes')
+      .on('postgres_changes', 
+        { event: '*', schema: 'public', table: 'cards' }, 
+        () => {
+          // Refresh cards when any change occurs
+          fetchCards();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, [featured]);
 
   const fetchCards = async () => {
