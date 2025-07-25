@@ -245,57 +245,22 @@ const AdminPanel: React.FC = () => {
       return;
     }
     
-    setLoading(true);
     try {
-      console.log('Attempting to delete card with ID:', id);
-      
-      // First, check if the card exists
-      const { data: existingCard, error: checkError } = await supabase
-        .from('cards')
-        .select('id, name')
-        .eq('id', id)
-        .single();
-      
-      if (checkError) {
-        console.error('Error checking card existence:', checkError);
-        alert(`Error finding card: ${checkError.message}`);
-        return;
-      }
-      
-      if (!existingCard) {
-        console.error('Card not found with ID:', id);
-        alert('Card not found in database');
-        return;
-      }
-      
-      console.log('Found card to delete:', existingCard);
-      
-      // Try to delete the card
       const { error } = await supabase
         .from('cards')
         .delete()
         .eq('id', id);
 
       if (error) {
-        console.error('Delete error details:', error);
-        throw error;
-      }
-      
-      console.log('Delete operation completed successfully');
-      
-      console.log('Deletion successful - card removed from database');
-      alert('Card deleted successfully!');
-      
-      // Force refresh the cards list
-      console.log('Refreshing cards list...');
-      await fetchCards();
-      console.log('Cards list refreshed');
+        console.error('Error deleting card:', error);
+      // Refresh the data
+      fetchCards();
+      fetchOrders();
+      fetchSubscribers();
       
     } catch (error) {
       console.error('Error deleting card:', error);
-      alert(`Error deleting card: ${error?.message || 'Unknown error occurred'}`);
-    } finally {
-      setLoading(false);
+      alert(`Error deleting card: ${error.message}`);
     }
   };
 
