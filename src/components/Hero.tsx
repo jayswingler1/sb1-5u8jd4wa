@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
           <h1 className="mb-4 transform hover:scale-105 transition-transform duration-300">
             <div className="relative overflow-hidden">
             <img 
-              src="/Logo 2.png" 
+              src="/Lucky Egg Logo.png" 
               alt="The Lucky Egg .Co - Fresh Pulls, Fair Prices" 
               className="mx-auto max-w-2xl h-auto animate-logo-wipe"
             />
