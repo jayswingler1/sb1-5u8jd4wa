@@ -36,10 +36,10 @@ const LatestPulls: React.FC = () => {
   ];
 
   return (
-    <section className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative z-10 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center gap-3 bg-red-600/90 backdrop-blur-sm border-3 border-white/30 rounded-full px-6 py-3 mb-6 shadow-lg">
             <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
             <span className="text-white font-black text-sm tracking-wide">FRESH FROM YOUTUBE</span>
@@ -56,7 +56,7 @@ const LatestPulls: React.FC = () => {
         </div>
 
         {/* Video Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-6">
           {latestPulls.map((video, index) => (
             <div key={video.id} className="group relative">
               {/* Video Card */}
@@ -133,7 +133,7 @@ const LatestPulls: React.FC = () => {
           ))}
         </div>
         
-        <div className="text-center mt-16">
+        <div className="text-center mt-6">
           <div className="bg-gradient-to-r from-red-600/90 to-red-700/90 backdrop-blur-md rounded-3xl p-8 border-4 border-white/20 shadow-2xl max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="bg-white rounded-full p-3">

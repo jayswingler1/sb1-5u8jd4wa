@@ -168,9 +168,9 @@ const FeaturedProducts: React.FC = () => {
   }
 
   return (
-    <section className="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+    <section className="relative z-10 py-14 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-10">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
             Premium <span className="text-transparent bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] bg-clip-text">Singles</span>
           </h2>
@@ -180,7 +180,7 @@ const FeaturedProducts: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-6">
           {cards.map((card) => (
             <ProductCard key={card.id} {...card} />
           ))}

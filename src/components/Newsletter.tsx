@@ -54,7 +54,7 @@ const Newsletter: React.FC = () => {
   };
 
   return (
-    <section className="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+    <section className="relative z-10 py-14 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 md:p-12 border-4 border-black shadow-2xl">
           <div className="text-center">
