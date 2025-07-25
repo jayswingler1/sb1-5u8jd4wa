@@ -57,7 +57,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onClose }) => {
           <div className="relative mb-8">
             <div className="relative mx-auto max-w-4xl">
               <img
-                src="/Sequence 02.00_00_22_38.Still003.png"
+                src="/Jay.png"
                 alt="Jay - The Lucky Egg .Co Owner"
                 className="w-full aspect-video object-cover rounded-2xl border-4 border-black shadow-2xl"
               />
