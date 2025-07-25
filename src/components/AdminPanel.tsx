@@ -261,11 +261,12 @@ const AdminPanel: React.FC = () => {
       // Show success message
       alert('Card deleted successfully!');
       
-      // Refresh the cards list
-      await fetchCards();
-      
-      // Also refresh orders in case any were affected
-      await fetchOrders();
+      // Refresh all data
+      await Promise.all([
+        fetchCards(),
+        fetchOrders(),
+        fetchSubscribers()
+      ]);
     } catch (error) {
       console.error('Error deleting card:', error);
       alert(`Error deleting card: ${error.message || 'Please try again.'}`);
