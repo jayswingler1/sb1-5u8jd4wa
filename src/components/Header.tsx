@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   return (
     <>
       <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-4">
-        <header className="bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] backdrop-blur-md border-4 border-black shadow-2xl rounded-3xl max-w-7xl mx-auto">
+        <header className="bg-[#ffc5f4] backdrop-blur-md border-4 border-black shadow-2xl rounded-3xl max-w-7xl mx-auto">
           <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
