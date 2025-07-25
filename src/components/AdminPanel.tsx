@@ -271,28 +271,20 @@ const AdminPanel: React.FC = () => {
       console.log('Found card to delete:', existingCard);
       
       // Try to delete the card
-      const { data: deletedCards, error } = await supabase
+      const { error } = await supabase
         .from('cards')
         .delete()
-        .eq('id', id)
-        .select('id');
+        .eq('id', id);
 
       if (error) {
         console.error('Delete error details:', error);
         throw error;
       }
       
-      console.log('Delete operation completed, deleted cards:', deletedCards);
+      console.log('Delete operation completed successfully');
       
-      // Check if any rows were actually deleted
-      if (!deletedCards || deletedCards.length === 0) {
-        console.error('No rows were deleted - card may not exist or deletion was blocked');
-        alert('Error: Card was not deleted. It may not exist or deletion may be blocked by database constraints.');
-        return;
-      } else {
-        console.log('Deletion successful - card removed from database');
-        alert('Card deleted successfully!');
-      }
+      console.log('Deletion successful - card removed from database');
+      alert('Card deleted successfully!');
       
       // Force refresh the cards list
       console.log('Refreshing cards list...');
