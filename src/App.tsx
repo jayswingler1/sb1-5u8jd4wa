@@ -9,7 +9,6 @@ import FeaturedProducts from './components/FeaturedProducts';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
-import ShopPage from './components/ShopPage';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import AboutPage from './components/AboutPage';
@@ -19,7 +18,6 @@ import { usePageTransition } from './hooks/usePageTransition';
 
 function App() {
   const [showAdmin, setShowAdmin] = useState(false);
-  const [showShop, setShowShop] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
@@ -27,9 +25,6 @@ function App() {
 
   // Check for admin access
   const isAdmin = window.location.hash === '#admin' || showAdmin;
-  
-  // Check for shop page
-  const isShop = window.location.hash === '#shop' || showShop;
   
   // Check for about page
   const isAbout = window.location.hash === '#about' || showAbout;
@@ -45,8 +40,6 @@ function App() {
     const handleHashChange = () => {
       if (window.location.hash === '#checkout') {
         setCurrentPage('checkout');
-      } else if (window.location.hash === '#shop') {
-        setCurrentPage('shop');
       } else if (window.location.hash === '#about') {
         setCurrentPage('about');
       } else if (window.location.hash.startsWith('#success')) {
@@ -103,19 +96,6 @@ function App() {
         <AboutPage onClose={() => {
           window.location.hash = '';
           setShowAbout(false);
-        }} />
-        <Cart />
-      </CartProvider>
-    );
-  }
-  
-  // Handle shop page
-  if (isShop) {
-    return (
-      <CartProvider>
-        <ShopPage onClose={() => {
-          window.location.hash = '';
-          setShowShop(false);
         }} />
         <Cart />
       </CartProvider>

@@ -47,28 +47,17 @@ const Hero: React.FC = () => {
           <button className="group relative bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] hover:from-[#ff6b9d] hover:to-[#fa98d4] text-white font-black py-6 px-12 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 border-4 border-white/20 overflow-hidden">
             {/* Button glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
-            <div 
-              onClick={() => handleNavigation('#shop')}
-              className="relative flex items-center gap-3 cursor-pointer"
-            >
-              <div className="bg-white/20 rounded-full p-2">
-                <Play className="w-6 h-6 group-hover:scale-110 transition-transform fill-current" />
-              </div>
-              Watch Latest Pull
-            </div>
+            Watch Latest Pull
           </button>
           
           <button className="group relative bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-black py-6 px-12 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-3xl border-4 border-white/30 hover:border-[#fa98d4] overflow-hidden">
             {/* Button glow effect */}
             <div className="absolute inset-0 bg-[#fa98d4] opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300"></div>
-            <div 
-              onClick={() => handleNavigation('#shop')}
-              className="relative flex items-center gap-3 cursor-pointer"
-            >
+            <div className="relative flex items-center gap-3">
               <div className="bg-white/20 rounded-full p-2">
                 <Shield className="w-6 h-6 group-hover:scale-110 transition-transform" />
               </div>
-              Shop All Cards
+              View Collection
             </div>
           </button>
         </div>

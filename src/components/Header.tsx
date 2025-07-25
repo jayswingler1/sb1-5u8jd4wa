@@ -65,12 +65,6 @@ const Header: React.FC = () => {
                 <a href="#" className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20">
                   Latest Pulls
                 </a>
-                <button 
-                  onClick={() => handleNavigation('#shop')}
-                  className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20"
-                >
-                  All Cards
-                </button>
                 <a href="https://www.youtube.com/@jayswingler2" target="_blank" rel="noopener noreferrer" className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20">
                   YouTube
                 </a>

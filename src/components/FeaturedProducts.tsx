@@ -143,8 +143,8 @@ const FeaturedProducts: React.FC = () => {
   const { cards, loading, error } = useCards(true); // Get featured cards only
 
   const handleViewAllCards = () => {
-    window.location.hash = '#shop';
-    window.location.reload();
+    // Scroll to featured products section or show more cards
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (loading) {
