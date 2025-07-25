@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
         {/* Main Headline with enhanced styling */}
         <div className="relative mb-12">
           {/* Main text */}
-          <h1 className="mb-4 transform hover:scale-105 transition-transform duration-300">
+          <h1 className="mb-4">
             <div className="relative overflow-hidden">
             <img 
               src="/Lucky Egg Logo.png" 
