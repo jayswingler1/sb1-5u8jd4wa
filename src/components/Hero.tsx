@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Enhanced CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 mt-16">
           <button className="group relative bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] hover:from-[#ff6b9d] hover:to-[#fa98d4] text-white font-black py-6 px-12 rounded-2xl text-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 border-4 border-white/20 overflow-hidden w-64">
             {/* Button glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
