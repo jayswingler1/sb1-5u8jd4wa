@@ -39,10 +39,6 @@ export const useCards = (featured = false) => {
       
       console.log('Fetching cards...', { featured });
       
-      if (!supabase) {
-        throw new Error('Supabase client not initialized');
-      }
-      
       let query = supabase
         .from('cards')
         .select('*')
