@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
             <img 
               src="/Lucky Egg Logo.png" 
               alt="The Lucky Egg .Co - Fresh Pulls, Fair Prices" 
-              className="mx-auto max-w-2xl h-auto animate-modern-logo-entrance hover:scale-110 transition-all duration-500 cursor-pointer"
+              className="mx-auto max-w-2xl h-auto animate-modern-logo-entrance"
             />
             </div>
           </h1>
