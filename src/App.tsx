@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
+import ShopPage from './components/ShopPage';
 import AboutPage from './components/AboutPage';
 import SuccessPage from './components/SuccessPage';
 import PageTransition from './components/PageTransition';
@@ -35,11 +36,16 @@ function App() {
   // Check for checkout page
   const isCheckout = window.location.hash === '#checkout' || currentPage === 'checkout';
 
+  // Check for shop page
+  const isShop = window.location.hash === '#shop' || currentPage === 'shop';
+
   // Listen for hash changes
   React.useEffect(() => {
     const handleHashChange = () => {
       if (window.location.hash === '#checkout') {
         setCurrentPage('checkout');
+      } else if (window.location.hash === '#shop') {
+        setCurrentPage('shop');
       } else if (window.location.hash === '#about') {
         setCurrentPage('about');
       } else if (window.location.hash.startsWith('#success')) {
@@ -72,6 +78,19 @@ function App() {
     return (
       <CartProvider>
         <Checkout />
+      </CartProvider>
+    );
+  }
+  
+  // Handle shop page
+  if (isShop) {
+    return (
+      <CartProvider>
+        <ShopPage onClose={() => {
+          window.location.hash = '';
+          setCurrentPage('home');
+        }} />
+        <Cart />
       </CartProvider>
     );
   }
