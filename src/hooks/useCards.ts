@@ -9,20 +9,26 @@ export const useCards = (featured = false) => {
   useEffect(() => {
     fetchCards();
     
-    // Set up real-time subscription to listen for changes
-    const subscription = supabase
-      .channel('cards_changes')
-      .on('postgres_changes', 
-        { event: '*', schema: 'public', table: 'cards' }, 
-        () => {
-          // Refresh cards when any change occurs
+    // Set up real-time subscription with better error handling
+    const channel = supabase
+      .channel('cards_realtime')
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'cards'
+      }, (payload) => {
+        console.log('Real-time update received:', payload);
+        // Force refresh when any change occurs
+        setTimeout(() => {
           fetchCards();
-        }
-      )
-      .subscribe();
+        }, 100);
+      })
+      .subscribe((status) => {
+        console.log('Subscription status:', status);
+      });
 
     return () => {
-      subscription.unsubscribe();
+      supabase.removeChannel(channel);
     };
   }, [featured]);
 
@@ -30,6 +36,8 @@ export const useCards = (featured = false) => {
     try {
       setLoading(true);
       setError(null);
+      
+      console.log('Fetching cards...', { featured });
       
       let query = supabase
         .from('cards')
@@ -44,6 +52,7 @@ export const useCards = (featured = false) => {
       const { data, error } = await query;
 
       if (error) throw error;
+      console.log('Cards fetched:', data?.length || 0);
       setCards(data || []);
     } catch (err) {
       console.error('Error fetching cards:', err);
@@ -56,6 +65,7 @@ export const useCards = (featured = false) => {
   };
 
   const refreshCards = () => {
+    console.log('Manual refresh triggered');
     fetchCards();
   };
 

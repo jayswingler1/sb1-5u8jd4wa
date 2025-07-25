@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, Grid, List, Star, ShoppingCart, Heart, Play, Package, User, Menu } from 'lucide-react';
+import { Search, Filter, Grid, List, Star, ShoppingCart, Heart, Play, Package, User, Menu, RefreshCw } from 'lucide-react';
 import { useCards } from '../hooks/useCards';
 import { useCart } from '../contexts/CartContext';
 import { Card } from '../lib/supabase';
@@ -19,15 +19,14 @@ const ShopPage: React.FC<ShopPageProps> = ({ onClose }) => {
   const [sortBy, setSortBy] = useState('newest');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
-  // Add periodic refresh to ensure data stays in sync
-  useEffect(() => {
-    const interval = setInterval(() => {
-      refreshCards();
-    }, 30000); // Refresh every 30 seconds
-
-    return () => clearInterval(interval);
-  }, [refreshCards]);
+  const handleManualRefresh = async () => {
+    setRefreshing(true);
+    await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for UX
+    refreshCards();
+    setTimeout(() => setRefreshing(false), 1000);
+  };
 
   // Get unique sets from cards
   const availableSets = Array.from(new Set(cards.map(card => card.set_name).filter(Boolean)));
@@ -352,6 +351,14 @@ const ShopPage: React.FC<ShopPageProps> = ({ onClose }) => {
               <span className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white font-bold text-sm">
                 {filteredCards.length} cards
               </span>
+              <button
+                onClick={handleManualRefresh}
+                disabled={refreshing}
+                className="bg-white/20 backdrop-blur-sm rounded-full p-2 hover:bg-white/30 transition-colors disabled:opacity-50"
+                title="Refresh cards"
+              >
+                <RefreshCw className={`h-4 w-4 text-white ${refreshing ? 'animate-spin' : ''}`} />
+              </button>
             </div>
             
             <div className="flex items-center gap-4">
