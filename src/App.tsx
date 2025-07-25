@@ -8,7 +8,6 @@ import LatestPulls from './components/LatestPulls';
 import FeaturedProducts from './components/FeaturedProducts';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
-import AdminPanel from './components/AdminPanel';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import ShopPage from './components/ShopPage';
@@ -18,15 +17,11 @@ import PageTransition from './components/PageTransition';
 import { usePageTransition } from './hooks/usePageTransition';
 
 function App() {
-  const [showAdmin, setShowAdmin] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
   const { isTransitioning, startTransition, completeTransition } = usePageTransition();
 
-  // Check for admin access
-  const isAdmin = window.location.hash === '#admin' || showAdmin;
-  
   // Check for about page
   const isAbout = window.location.hash === '#about' || showAbout;
   
@@ -51,7 +46,7 @@ function App() {
       } else if (window.location.hash.startsWith('#success')) {
         setCurrentPage('success');
       } else if (window.location.hash === '#admin') {
-        setCurrentPage('admin');
+        setCurrentPage('home');
       } else {
         setCurrentPage('home');
       }
@@ -62,16 +57,6 @@ function App() {
 
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
-
-  const toggleAdmin = () => {
-    if (isAdmin) {
-      window.location.hash = '';
-      setShowAdmin(false);
-    } else {
-      window.location.hash = '#admin';
-      setShowAdmin(true);
-    }
-  };
 
   // Handle checkout page
   if (isCheckout) {
@@ -121,21 +106,6 @@ function App() {
     );
   }
 
-  // If admin mode, show admin panel
-  if (isAdmin) {
-    return (
-      <div>
-        <button
-          onClick={toggleAdmin}
-          className="fixed top-4 right-4 z-50 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg"
-        >
-          View Frontend
-        </button>
-        <AdminPanel />
-      </div>
-    );
-  }
-
   // Default frontend view
   return (
     <CartProvider>
@@ -144,14 +114,6 @@ function App() {
           isTransitioning={isTransitioning} 
           onTransitionComplete={completeTransition}
         />
-        
-        {/* Admin Toggle Button */}
-        <button
-          onClick={toggleAdmin}
-          className="fixed top-4 right-4 z-50 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg"
-        >
-          Admin Panel
-        </button>
         
         {/* Global Grid Background */}
         <div className="fixed inset-0 opacity-[0.08] pointer-events-none">
