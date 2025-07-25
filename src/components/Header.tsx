@@ -30,7 +30,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-4">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-8">
         <header className="bg-[#fa98d4] backdrop-blur-md border-4 border-black rounded-3xl max-w-7xl mx-auto shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
