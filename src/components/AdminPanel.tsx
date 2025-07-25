@@ -253,6 +253,7 @@ const AdminPanel: React.FC = () => {
 
       if (error) {
         console.error('Error deleting card:', error);
+      }
       // Refresh the data
       fetchCards();
       fetchOrders();
