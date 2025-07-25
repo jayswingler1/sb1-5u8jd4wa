@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Youtube, Play, Star, Trophy, Heart, Zap, Shield, Clock } from 'lucide-react';
+import { usePageTransition } from '../hooks/usePageTransition';
 import StarField from './StarField';
 
 interface AboutPageProps {
@@ -7,6 +8,22 @@ interface AboutPageProps {
 }
 
 const AboutPage: React.FC<AboutPageProps> = ({ onClose }) => {
+  const { startTransition } = usePageTransition();
+
+  const handleNavigation = (hash: string) => {
+    startTransition(() => {
+      window.location.hash = hash;
+      window.location.reload();
+    });
+  };
+
+  const handleClose = () => {
+    startTransition(() => {
+      window.location.hash = '';
+      window.location.reload();
+    });
+  };
+
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-[#3a4bcc] via-[#2a3ba0] to-[#1a2b80] z-50 overflow-y-auto">
       <StarField />
@@ -30,7 +47,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onClose }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="flex items-center gap-3 text-black hover:text-white transition-colors"
             >
               <ArrowLeft className="w-6 h-6" />
@@ -243,7 +260,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onClose }) => {
             </a>
             
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="bg-[#fa98d4] hover:bg-[#ff6b9d] text-white font-black py-4 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-4 border-black"
             >
               Start Shopping
