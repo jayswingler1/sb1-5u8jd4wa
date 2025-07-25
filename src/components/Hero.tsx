@@ -73,28 +73,6 @@ const Hero: React.FC = () => {
           </button>
         </div>
 
-        {/* Enhanced Master Set CTA */}
-        <div className="text-center mb-20">
-          <div className="relative bg-gradient-to-r from-[#fa98d4]/20 to-[#ff6b9d]/20 backdrop-blur-md rounded-3xl p-8 border-4 border-[#fa98d4]/30 shadow-2xl max-w-4xl mx-auto overflow-hidden">
-            <div className="relative">
-              <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
-                Looking for premium products? 
-                <span className="text-transparent bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] bg-clip-text"> Check out our exclusive collection!</span>
-              </h3>
-              <p className="text-white/90 text-lg mb-6 font-medium">
-                Discover our curated selection of premium products and services designed just for you.
-              </p>
-              <button 
-                onClick={() => handleNavigation('#products')}
-                className="group bg-[#fa98d4] hover:bg-[#ff6b9d] text-white font-black py-4 px-8 rounded-2xl text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-4 border-black relative overflow-hidden inline-block"
-              >
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                <span className="relative">🛍️ View Products</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
         {/* Enhanced Trust Indicators */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="group relative bg-white/5 backdrop-blur-md rounded-3xl p-8 border-2 border-white/20 hover:border-[#fa98d4]/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">

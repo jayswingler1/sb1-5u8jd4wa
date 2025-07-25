@@ -71,12 +71,6 @@ const Header: React.FC = () => {
                 >
                   All Cards
                 </button>
-                <button 
-                  onClick={() => handleNavigation('#products')}
-                  className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20"
-                >
-                  Products
-                </button>
                 <a href="https://www.youtube.com/@jayswingler2" target="_blank" rel="noopener noreferrer" className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20">
                   YouTube
                 </a>

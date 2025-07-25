@@ -13,7 +13,6 @@ import ShopPage from './components/ShopPage';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import AboutPage from './components/AboutPage';
-import ProductsPage from './components/ProductsPage';
 import SuccessPage from './components/SuccessPage';
 import PageTransition from './components/PageTransition';
 import { usePageTransition } from './hooks/usePageTransition';
@@ -22,7 +21,6 @@ function App() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [showShop, setShowShop] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
-  const [showProducts, setShowProducts] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
   const { isTransitioning, startTransition, completeTransition } = usePageTransition();
@@ -35,9 +33,6 @@ function App() {
   
   // Check for about page
   const isAbout = window.location.hash === '#about' || showAbout;
-  
-  // Check for products page
-  const isProducts = window.location.hash === '#products' || showProducts;
   
   // Check for success page
   const isSuccess = window.location.hash.startsWith('#success') || showSuccess;
@@ -54,8 +49,6 @@ function App() {
         setCurrentPage('shop');
       } else if (window.location.hash === '#about') {
         setCurrentPage('about');
-      } else if (window.location.hash === '#products') {
-        setCurrentPage('products');
       } else if (window.location.hash.startsWith('#success')) {
         setCurrentPage('success');
       } else if (window.location.hash === '#admin') {
@@ -97,19 +90,6 @@ function App() {
         <SuccessPage onClose={() => {
           window.location.hash = '';
           setShowSuccess(false);
-        }} />
-        <Cart />
-      </CartProvider>
-    );
-  }
-  
-  // Handle products page
-  if (isProducts) {
-    return (
-      <CartProvider>
-        <ProductsPage onClose={() => {
-          window.location.hash = '';
-          setShowProducts(false);
         }} />
         <Cart />
       </CartProvider>
