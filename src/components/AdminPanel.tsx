@@ -249,27 +249,65 @@ const AdminPanel: React.FC = () => {
     try {
       console.log('Attempting to delete card with ID:', id);
       
+      // First, check if the card exists
+      const { data: existingCard, error: checkError } = await supabase
+        .from('cards')
+        .select('id, name')
+        .eq('id', id)
+        .single();
+      
+      if (checkError) {
+        console.error('Error checking card existence:', checkError);
+        alert(`Error finding card: ${checkError.message}`);
+        return;
+      }
+      
+      if (!existingCard) {
+        console.error('Card not found with ID:', id);
+        alert('Card not found in database');
+        return;
+      }
+      
+      console.log('Found card to delete:', existingCard);
+      
+      // Try to delete the card
       const { error } = await supabase
         .from('cards')
         .delete()
         .eq('id', id);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Delete error details:', error);
+        throw error;
+      }
       
       console.log('Card deleted successfully');
       
-      // Show success message
-      alert('Card deleted successfully!');
+      // Verify deletion worked
+      const { data: verifyCard, error: verifyError } = await supabase
+        .from('cards')
+        .select('id')
+        .eq('id', id)
+        .single();
       
-      // Refresh all data
-      await Promise.all([
-        fetchCards(),
-        fetchOrders(),
-        fetchSubscribers()
-      ]);
+      if (verifyError && verifyError.code === 'PGRST116') {
+        // Card not found - deletion successful
+        console.log('Deletion verified - card no longer exists');
+        alert('Card deleted successfully!');
+      } else if (verifyCard) {
+        console.error('Card still exists after deletion attempt');
+        alert('Error: Card was not deleted');
+        return;
+      }
+      
+      // Force refresh the cards list
+      console.log('Refreshing cards list...');
+      await fetchCards();
+      console.log('Cards list refreshed');
+      
     } catch (error) {
       console.error('Error deleting card:', error);
-      alert(`Error deleting card: ${error.message || 'Please try again.'}`);
+      alert(`Error deleting card: ${error?.message || 'Unknown error occurred'}`);
     } finally {
       setLoading(false);
     }
