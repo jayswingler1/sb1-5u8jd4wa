@@ -13,7 +13,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <img 
-                src="/Logo 2.png" 
+                src="/Lucky Egg Logo.png" 
                 alt="The Lucky Egg .Co" 
                 className="h-12 w-auto drop-shadow-lg"
               />
