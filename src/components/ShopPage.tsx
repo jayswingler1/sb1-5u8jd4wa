@@ -273,7 +273,7 @@ const ShopPage: React.FC<ShopPageProps> = ({ onClose }) => {
                   className="hover:opacity-80 transition-opacity cursor-pointer"
                 >
                   <img 
-                    src="/Logo 2.png" 
+                    src="/Lucky Egg Logo.png" 
                     alt="The Lucky Egg .Co" 
                     className="h-12 w-auto drop-shadow-lg"
                   />
