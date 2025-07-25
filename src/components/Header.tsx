@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Search, User, Menu, LogOut } from 'lucide-react';
+import { ShoppingCart, Search, User, LogOut } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './AuthModal';
@@ -106,9 +106,6 @@ const Header: React.FC = () => {
                     {getCartCount()}
                   </span>
                 )}
-              </button>
-              <button className="bg-white/90 backdrop-blur-sm rounded-full p-3 hover:bg-white transition-colors border-3 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1">
-                <Menu className="h-5 w-5 text-black" />
               </button>
             </div>
           </div>
