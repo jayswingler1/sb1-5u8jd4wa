@@ -30,8 +30,9 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="relative z-10 bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] backdrop-blur-md border-b-4 border-black shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-4">
+        <header className="bg-gradient-to-r from-[#fa98d4] to-[#ff6b9d] backdrop-blur-md border-4 border-black shadow-2xl rounded-3xl max-w-7xl mx-auto">
+          <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
@@ -111,8 +112,9 @@ const Header: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
-      </header>
+          </div>
+        </header>
+      </div>
 
       {/* Auth Modal */}
       <AuthModal
