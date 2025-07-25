@@ -54,26 +54,6 @@ const Hero: React.FC = () => {
           </button>
         </div>
 
-        {/* Enhanced Trust Indicators */}
-        <div className="fixed right-16 top-1/2 transform -translate-y-1/2 z-20 space-y-4">
-          <div className="group relative bg-white/5 backdrop-blur-md rounded-3xl p-6 border-2 border-white/20 hover:border-[#fa98d4]/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 animate-slide-in-right w-48">
-            <div className="text-4xl font-black text-white mb-2 group-hover:text-[#fa98d4] transition-colors">2.5K+</div>
-            <div className="text-white/80 font-bold text-lg">Cards Pulled Live</div>
-            <div className="text-white/60 text-sm mt-2">Every single card documented</div>
-          </div>
-          
-          <div className="group relative bg-white/5 backdrop-blur-md rounded-3xl p-6 border-2 border-white/20 hover:border-[#fa98d4]/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 w-48" style={{ animation: 'slide-in-right 1s ease-out 0.6s both' }}>
-            <div className="text-4xl font-black text-white mb-2 group-hover:text-[#fa98d4] transition-colors">15K+</div>
-            <div className="text-white/80 font-bold text-lg">YouTube Subscribers</div>
-            <div className="text-white/60 text-sm mt-2">Growing community of collectors</div>
-          </div>
-          
-          <div className="group relative bg-white/5 backdrop-blur-md rounded-3xl p-6 border-2 border-white/20 hover:border-[#fa98d4]/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 w-48" style={{ animation: 'slide-in-right 1s ease-out 0.8s both' }}>
-            <div className="text-4xl font-black text-white mb-2 group-hover:text-[#fa98d4] transition-colors">98%</div>
-            <div className="text-white/80 font-bold text-lg">Positive Reviews</div>
-            <div className="text-white/60 text-sm mt-2">Trusted by collectors worldwide</div>
-          </div>
-        </div>
       </div>
     </section>
   );
