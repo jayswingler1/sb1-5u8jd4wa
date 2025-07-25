@@ -246,6 +246,8 @@ const AdminPanel: React.FC = () => {
       alert('Supabase is not configured. Cannot delete card.');
       return;
     }
+    
+    setLoading(true);
     try {
       const { error } = await supabase
         .from('cards')
@@ -265,6 +267,8 @@ const AdminPanel: React.FC = () => {
     } catch (error) {
       console.error('Error deleting card:', error);
       alert('Error deleting card. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
