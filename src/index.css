@@ -106,15 +106,6 @@
   }
 }
 
-@keyframes logo-glow-pulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 20px rgba(250, 152, 212, 0.3));
-  }
-  50% {
-    filter: drop-shadow(0 0 40px rgba(250, 152, 212, 0.6)) drop-shadow(0 0 60px rgba(255, 107, 157, 0.4));
-  }
-}
-
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
