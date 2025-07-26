@@ -33,15 +33,23 @@ const AdminSetup: React.FC = () => {
       
       console.log('Profile query created:', profileQuery);
       
-      const { data: existingProfile, error: profileError } = await profileQuery.single();
+      console.log('Executing query...');
+      const { data: existingProfile, error: profileError } = await profileQuery;
 
-      console.log('Profile query result:', { existingProfile, profileError });
+      console.log('Profile query result:', { 
+        existingProfile, 
+        profileError,
+        errorCode: profileError?.code,
+        errorMessage: profileError?.message 
+      });
 
       if (profileError) {
-        if (profileError.code === 'PGRST116') {
+        console.log('Profile error detected:', profileError.code);
+        if (profileError.code === 'PGRST116' || profileError.message?.includes('No rows found')) {
           // User not found
           throw new Error('No user found with this email address. The user must sign up first before being made an admin.');
         } else {
+          console.log('Other profile error:', profileError);
           throw profileError;
         }
       }
