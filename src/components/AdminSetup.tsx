@@ -13,12 +13,29 @@ const AdminSetup: React.FC = () => {
     setMessage(null);
 
     try {
-      // Call the Supabase function to create admin profile
-      const { error } = await supabase.rpc('create_admin_profile', {
-        admin_email: email
-      });
+      // First, check if a user with this email exists in the profiles table
+      const { data: existingProfile, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('email', email)
+        .single();
 
-      if (error) throw error;
+      if (profileError && profileError.code !== 'PGRST116') {
+        // PGRST116 is "not found" error, which is expected if user doesn't exist
+        throw profileError;
+      }
+
+      if (!existingProfile) {
+        throw new Error('No user found with this email address. The user must sign up first before being made an admin.');
+      }
+
+      // Update the user's role to admin
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({ role: 'admin' })
+        .eq('email', email);
+
+      if (updateError) throw updateError;
 
       setMessage({ 
         type: 'success', 
@@ -29,7 +46,7 @@ const AdminSetup: React.FC = () => {
       console.error('Error creating admin profile:', error);
       setMessage({ 
         type: 'error', 
-        text: error.message || 'Failed to create admin profile. Make sure the user has signed up first.' 
+        text: error.message || 'Failed to create admin profile. Make sure the user has signed up first and try again.' 
       });
     } finally {
       setLoading(false);
