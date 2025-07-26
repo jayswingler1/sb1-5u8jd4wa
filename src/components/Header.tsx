@@ -30,24 +30,24 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="relative z-10 px-2 pt-8">
-        <header className="bg-[#fa98d4] backdrop-blur-md border-4 border-black rounded-3xl max-w-4xl mx-auto shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-          <div className="px-4 lg:px-6">
-          <div className="flex items-center justify-between h-16">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-12">
+        <header className="bg-[#fa98d4] backdrop-blur-md border-4 border-black rounded-2xl sm:rounded-3xl max-w-2xl sm:max-w-4xl lg:max-w-5xl mx-auto shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <div className="px-3 sm:px-4 lg:px-6">
+          <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
             {/* Logo */}
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <img 
                   src="/Lucky Egg Logo.png" 
                   alt="The Lucky Egg .Co" 
-                  className="h-12 w-auto drop-shadow-lg"
+                  className="h-8 sm:h-10 lg:h-12 w-auto drop-shadow-lg"
                 />
               </div>
             </div>
 
             {/* Navigation */}
             <nav className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
+              <div className="ml-4 lg:ml-10 flex items-baseline space-x-4 lg:space-x-8">
                 <a href="#" className="text-black hover:text-white px-4 py-2 text-sm font-black transition-colors rounded-lg hover:bg-black/20">
                   Latest Pulls
                 </a>
@@ -78,19 +78,19 @@ const Header: React.FC = () => {
             </nav>
 
             {/* Right side icons */}
-            <div className="flex items-center space-x-4">
-              <button className="text-black hover:text-white transition-colors p-2 rounded-lg hover:bg-black/20">
-                <Search className="h-5 w-5" />
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <button className="text-black hover:text-white transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-black/20">
+                <Search className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
               
               <button 
                 onClick={handleAuthClick}
-                className="text-black hover:text-white transition-colors p-2 rounded-lg hover:bg-black/20 flex items-center gap-2"
+                className="text-black hover:text-white transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-black/20 flex items-center gap-1 sm:gap-2"
                 title={user ? 'Sign Out' : 'Sign In'}
               >
-                {user ? <LogOut className="h-5 w-5" /> : <User className="h-5 w-5" />}
+                {user ? <LogOut className="h-4 w-4 sm:h-5 sm:w-5" /> : <User className="h-4 w-4 sm:h-5 sm:w-5" />}
                 {user && (
-                  <span className="hidden sm:inline text-sm font-bold">
+                  <span className="hidden md:inline text-xs sm:text-sm font-bold">
                     {user.email?.split('@')[0]}
                   </span>
                 )}
@@ -98,11 +98,11 @@ const Header: React.FC = () => {
               
               <button 
                 onClick={toggleCart}
-                className="text-black hover:text-white transition-colors relative p-2 rounded-lg hover:bg-black/20"
+                className="text-black hover:text-white transition-colors relative p-1.5 sm:p-2 rounded-lg hover:bg-black/20"
               >
-                <ShoppingCart className="h-5 w-5" />
+                <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
                 {getCartCount() > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold border-2 border-white">
+                  <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold border-2 border-white">
                     {getCartCount()}
                   </span>
                 )}
