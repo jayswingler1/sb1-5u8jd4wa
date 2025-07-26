@@ -30,8 +30,8 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-12">
-        <header className="bg-[#fa98d4] backdrop-blur-md border-4 border-black rounded-2xl sm:rounded-3xl max-w-2xl sm:max-w-4xl lg:max-w-5xl mx-auto shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+      <div className="relative z-20 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8">
+        <header className="bg-[#fa98d4] backdrop-blur-md border-4 border-black rounded-2xl sm:rounded-3xl max-w-4xl mx-auto shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-4 sm:mb-6 lg:mb-8">
           <div className="px-3 sm:px-4 lg:px-6">
           <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
             {/* Logo */}

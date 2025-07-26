@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-8 sm:pt-12 lg:pt-16">
       {/* Hero Content */}
-      <div className="relative z-10 text-center max-w-6xl mx-auto -mt-12 sm:-mt-16 lg:-mt-24">
+      <div className="relative z-10 text-center max-w-6xl mx-auto mt-8 sm:mt-12 lg:mt-16">
         {/* Main Headline with enhanced styling */}
         <div className="relative mb-4">
           {/* Main text */}
@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
             <img 
               src="/Lucky Egg Logo.png" 
               alt="The Lucky Egg .Co - Fresh Pulls, Fair Prices" 
-              className="mx-auto max-w-xs sm:max-w-lg lg:max-w-2xl h-auto animate-modern-logo-entrance"
+              className="mx-auto w-64 sm:w-80 md:w-96 lg:w-[500px] xl:w-[600px] h-auto animate-modern-logo-entrance"
             />
             </div>
           </h1>
