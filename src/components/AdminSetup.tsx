@@ -9,63 +9,69 @@ const AdminSetup: React.FC = () => {
 
   const handleCreateAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('=== HANDLE CREATE ADMIN CALLED ===');
-    console.log('=== FORM SUBMITTED ===');
-    console.log('Email entered:', email);
+    console.log('Form submitted!');
     
-    if (!email) {
+    if (!email.trim()) {
       console.log('No email provided');
       setMessage({ type: 'error', text: 'Please enter an email address' });
       return;
     }
     
-    console.log('Form submitted with email:', email);
+    console.log('Starting admin creation for:', email);
     setLoading(true);
     setMessage(null);
 
     try {
       console.log('Checking for existing profile...');
-      // First, check if a user with this email exists in the profiles table
+      
+      // Check if user exists in profiles table
       const { data: existingProfile, error: profileError } = await supabase
         .from('profiles')
         .select('*')
-        .eq('email', email)
+        .eq('email', email.trim())
         .single();
 
       console.log('Profile query result:', { existingProfile, profileError });
 
-      if (profileError && profileError.code !== 'PGRST116') {
-        // PGRST116 is "not found" error, which is expected if user doesn't exist
-        console.log('Profile error (not 404):', profileError);
-        throw profileError;
+      if (profileError) {
+        if (profileError.code === 'PGRST116') {
+          // User not found
+          throw new Error('No user found with this email address. The user must sign up first before being made an admin.');
+        } else {
+          throw profileError;
+        }
       }
 
       if (!existingProfile) {
-        console.log('No profile found for email:', email);
-        throw new Error('No user found with this email address. The user must sign up first before being made an admin.');
+        throw new Error('No user found with this email address.');
       }
 
-      console.log('Updating user role to admin...');
-      // Update the user's role to admin
+      console.log('Found user, updating to admin...');
+      
+      // Update user role to admin
       const { error: updateError } = await supabase
         .from('profiles')
         .update({ role: 'admin' })
-        .eq('email', email);
+        .eq('email', email.trim());
 
       console.log('Update result:', { updateError });
 
-      if (updateError) throw updateError;
+      if (updateError) {
+        throw updateError;
+      }
 
+      console.log('Admin creation successful!');
       setMessage({ 
         type: 'success', 
         text: `Admin profile created successfully for ${email}! They can now access the admin panel.` 
       });
       setEmail('');
+      
     } catch (error: any) {
-      console.error('Error creating admin profile:', error);
+      console.error('Error creating admin:', error);
       setMessage({ 
         type: 'error', 
-        text: error.message || 'Failed to create admin profile. Make sure the user has signed up first and try again.' 
+        text: error.message || 'Failed to create admin profile. Please try again.' 
       });
     } finally {
       console.log('Setting loading to false');
@@ -96,9 +102,13 @@ const AdminSetup: React.FC = () => {
               type="email"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                console.log('Email changed to:', e.target.value);
+                setEmail(e.target.value);
+              }}
               className="w-full pl-10 pr-4 py-3 bg-white border-2 border-black rounded-xl text-black placeholder-black/60 focus:outline-none focus:border-[#fa98d4] transition-colors font-medium"
               placeholder="admin@luckyegg.store"
+              disabled={loading}
             />
           </div>
           <p className="text-xs text-black/60 mt-1">
@@ -123,7 +133,7 @@ const AdminSetup: React.FC = () => {
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || !email.trim()}
           className="w-full bg-[#fa98d4] hover:bg-[#ff6b9d] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 disabled:transform-none disabled:shadow-none"
         >
           {loading ? (
