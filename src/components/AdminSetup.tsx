@@ -25,11 +25,15 @@ const AdminSetup: React.FC = () => {
       console.log('Checking for existing profile...');
       
       // Check if user exists in profiles table
-      const { data: existingProfile, error: profileError } = await supabase
+      console.log('About to query profiles table...');
+      const profileQuery = supabase
         .from('profiles')
         .select('*')
-        .eq('email', email.trim())
-        .single();
+        .eq('email', email.trim());
+      
+      console.log('Profile query created:', profileQuery);
+      
+      const { data: existingProfile, error: profileError } = await profileQuery.single();
 
       console.log('Profile query result:', { existingProfile, profileError });
 
