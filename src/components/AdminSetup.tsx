@@ -9,6 +9,7 @@ const AdminSetup: React.FC = () => {
 
   const handleCreateAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('=== HANDLE CREATE ADMIN CALLED ===');
     console.log('=== FORM SUBMITTED ===');
     console.log('Email entered:', email);
     
@@ -35,10 +36,12 @@ const AdminSetup: React.FC = () => {
 
       if (profileError && profileError.code !== 'PGRST116') {
         // PGRST116 is "not found" error, which is expected if user doesn't exist
+        console.log('Profile error (not 404):', profileError);
         throw profileError;
       }
 
       if (!existingProfile) {
+        console.log('No profile found for email:', email);
         throw new Error('No user found with this email address. The user must sign up first before being made an admin.');
       }
 
@@ -65,6 +68,7 @@ const AdminSetup: React.FC = () => {
         text: error.message || 'Failed to create admin profile. Make sure the user has signed up first and try again.' 
       });
     } finally {
+      console.log('Setting loading to false');
       setLoading(false);
     }
   };
@@ -120,14 +124,6 @@ const AdminSetup: React.FC = () => {
         <button
           type="submit"
           disabled={loading}
-          onClick={(e) => {
-            console.log('Button clicked!');
-            if (!email.trim()) {
-              e.preventDefault();
-              setMessage({ type: 'error', text: 'Please enter an email address' });
-              return;
-            }
-          }}
           className="w-full bg-[#fa98d4] hover:bg-[#ff6b9d] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 disabled:transform-none disabled:shadow-none"
         >
           {loading ? (
