@@ -9,16 +9,20 @@ const AdminSetup: React.FC = () => {
 
   const handleCreateAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form submitted with email:', email);
     setLoading(true);
     setMessage(null);
 
     try {
+      console.log('Checking for existing profile...');
       // First, check if a user with this email exists in the profiles table
       const { data: existingProfile, error: profileError } = await supabase
         .from('profiles')
         .select('*')
         .eq('email', email)
         .single();
+
+      console.log('Profile query result:', { existingProfile, profileError });
 
       if (profileError && profileError.code !== 'PGRST116') {
         // PGRST116 is "not found" error, which is expected if user doesn't exist
@@ -29,11 +33,14 @@ const AdminSetup: React.FC = () => {
         throw new Error('No user found with this email address. The user must sign up first before being made an admin.');
       }
 
+      console.log('Updating user role to admin...');
       // Update the user's role to admin
       const { error: updateError } = await supabase
         .from('profiles')
         .update({ role: 'admin' })
         .eq('email', email);
+
+      console.log('Update result:', { updateError });
 
       if (updateError) throw updateError;
 
